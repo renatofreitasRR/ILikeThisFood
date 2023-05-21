@@ -7,6 +7,7 @@ using ILikeThisFood.Domain.Entities;
 using ILikeThisFood.Domain.Repositories;
 using ILikeThisFood.Infra.Data.Context;
 using ILikeThisFood.Infra.Data.DTO;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace ILikeThisFood.Infra.Data.Repositories
@@ -22,7 +23,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
 
         public async Task CreateAsync(Company company)
         {
-            var companyDTO = new CompanyDTO(company.Id, company.Name, company.RegistreNumber);
+            var companyDTO = new CompanyDTO(company.Name, company.RegistreNumber);
 
             await _companiesCollection.InsertOneAsync(companyDTO);
         }
@@ -33,9 +34,30 @@ namespace ILikeThisFood.Infra.Data.Repositories
                 .Find(_ => true)
                 .ToListAsync();
 
-            var companies = companiesDTO.Select(x => new Company(x.Name, x.RegistreNumber));
+            var companies = companiesDTO.Select(x => new Company(x.Id, x.Name, x.RegistreNumber));
 
             return companies;
+        }
+
+        public async Task<Company> GetAsync(string id)
+        {
+            var companyDTO = await _companiesCollection
+                .Find(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (companyDTO is null)
+                throw new Exception();
+
+            var company = new Company(companyDTO.Id, companyDTO.Name, companyDTO.RegistreNumber);
+
+            return company;
+        }
+
+        public async Task UpdateAsync(Company company)
+        {
+            var companyDTO = new CompanyDTO(company.Id, company.Name, company.RegistreNumber);
+
+            await _companiesCollection.ReplaceOneAsync(x => x.Id == company.Id.ToString(), companyDTO);
         }
     }
 }

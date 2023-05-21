@@ -10,7 +10,13 @@ namespace ILikeThisFood.Infra.Data.DTO
 {
     public class CompanyDTO
     {
-        public CompanyDTO(Guid id, string name, string registreNumber)
+        public CompanyDTO( string name, string registreNumber)
+        {
+            Name = name;
+            RegistreNumber = registreNumber;
+        }
+
+        public CompanyDTO(string id, string name, string registreNumber)
         {
             Id = id;
             Name = name;
@@ -18,9 +24,15 @@ namespace ILikeThisFood.Infra.Data.DTO
         }
 
         [BsonId]
-        [BsonRepresentation(BsonType.String)]
-        public Guid Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string Name { get; set; }
         public string RegistreNumber { get; set; }
+
+        public void Update(string name, string registreNumber)
+        {
+            this.Name = name;
+            this.RegistreNumber = registreNumber;
+        }
     }
 }

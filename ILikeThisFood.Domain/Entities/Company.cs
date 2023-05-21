@@ -10,12 +10,11 @@ namespace ILikeThisFood.Domain.Entities
     {
         public Company(string name, string registreNumber)
         {
-            Id = Guid.NewGuid();
             Name = name;
             RegistreNumber = registreNumber;
         }
 
-        public Company(Guid id, string name, string registreNumber)
+        public Company(string id, string name, string registreNumber)
         {
             Id = id;
             Name = name;
