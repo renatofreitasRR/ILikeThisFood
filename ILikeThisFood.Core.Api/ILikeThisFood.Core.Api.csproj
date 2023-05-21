@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\ILikeThisFood.Domain\ILikeThisFood.Domain.csproj" />
+    <ProjectReference Include="..\ILikeThisFood.Infra.CrossCutting\ILikeThisFood.Infra.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>
