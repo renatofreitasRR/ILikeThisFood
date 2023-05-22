@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ILikeThisFood.Domain\ILikeThisFood.Domain.csproj" />
     <ProjectReference Include="..\ILikeThisFood.Infra.Data\ILikeThisFood.Infra.Data.csproj" />
+    <ProjectReference Include="..\ILikeThisFood.Services.Storage\ILikeThisFood.Services.Storage.csproj" />
   </ItemGroup>
 
 </Project>

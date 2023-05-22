@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ILikeThisFood.Domain\ILikeThisFood.Domain.csproj" />
     <ProjectReference Include="..\ILikeThisFood.Infra.CrossCutting\ILikeThisFood.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\ILikeThisFood.Services.Storage\ILikeThisFood.Services.Storage.csproj" />
   </ItemGroup>
 
 </Project>

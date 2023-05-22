@@ -9,7 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.RegisterRepositories();
+builder.Services.RegisterServices();
 
 builder.Services.Configure<ILikeThisFoodDatabaseSettings>(
     builder.Configuration.GetSection("ILikeThisFoodDatabase"));

@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILikeThisFood.Core.Api", "ILikeThisFood.Core.Api\ILikeThisFood.Core.Api.csproj", "{2C9A1DD9-2937-4D82-BDDA-8DAC246D59F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILikeThisFood.Core.Api", "ILikeThisFood.Core.Api\ILikeThisFood.Core.Api.csproj", "{2C9A1DD9-2937-4D82-BDDA-8DAC246D59F0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{24CF0861-65AF-4939-B9C6-1D48335713DD} = {24CF0861-65AF-4939-B9C6-1D48335713DD}
 		{788A8228-7E26-4D95-AC19-E1566F892392} = {788A8228-7E26-4D95-AC19-E1566F892392}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILikeThisFood.Domain", "ILikeThisFood.Domain\ILikeThisFood.Domain.csproj", "{24CF0861-65AF-4939-B9C6-1D48335713DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILikeThisFood.Domain", "ILikeThisFood.Domain\ILikeThisFood.Domain.csproj", "{24CF0861-65AF-4939-B9C6-1D48335713DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILikeThisFood.Infra.Data", "ILikeThisFood.Infra.Data\ILikeThisFood.Infra.Data.csproj", "{788A8228-7E26-4D95-AC19-E1566F892392}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILikeThisFood.Infra.Data", "ILikeThisFood.Infra.Data\ILikeThisFood.Infra.Data.csproj", "{788A8228-7E26-4D95-AC19-E1566F892392}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILikeThisFood.Infra.CrossCutting", "ILikeThisFood.Infra.CrossCutting\ILikeThisFood.Infra.CrossCutting.csproj", "{DD5FBD1D-EE80-45ED-8198-9569B2D2F367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILikeThisFood.Infra.CrossCutting", "ILikeThisFood.Infra.CrossCutting\ILikeThisFood.Infra.CrossCutting.csproj", "{DD5FBD1D-EE80-45ED-8198-9569B2D2F367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILikeThisFood.Services.Storage", "ILikeThisFood.Services.Storage\ILikeThisFood.Services.Storage.csproj", "{BAC9961A-2B9A-4FF5-A81E-F37C78076C76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{DD5FBD1D-EE80-45ED-8198-9569B2D2F367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD5FBD1D-EE80-45ED-8198-9569B2D2F367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD5FBD1D-EE80-45ED-8198-9569B2D2F367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC9961A-2B9A-4FF5-A81E-F37C78076C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC9961A-2B9A-4FF5-A81E-F37C78076C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC9961A-2B9A-4FF5-A81E-F37C78076C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC9961A-2B9A-4FF5-A81E-F37C78076C76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
