@@ -28,6 +28,11 @@ namespace ILikeThisFood.Infra.Data.Repositories
             await _companiesCollection.InsertOneAsync(companyDTO);
         }
 
+        public async Task DeleteAsync(string id)
+        {
+            await _companiesCollection.DeleteOneAsync(x => x.Id == id);
+        }
+
         public async Task<IEnumerable<Company>> GetAllAsync()
         {
             var companiesDTO = await _companiesCollection

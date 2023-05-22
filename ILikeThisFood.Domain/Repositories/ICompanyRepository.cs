@@ -13,6 +13,7 @@ namespace ILikeThisFood.Domain.Repositories
         Task<IEnumerable<Company>> GetAllAsync();
         Task CreateAsync(Company company);
         Task UpdateAsync(Company company);
+        Task DeleteAsync(string id);
         Task PutFile(string id, string fileUrl);
     }
 }

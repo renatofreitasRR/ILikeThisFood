@@ -63,6 +63,14 @@ namespace ILikeThisFood.Core.Api.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id:length(24)}")]
+        public async Task<IActionResult> DeleteAsync(string id)
+        {
+            await _companyRepository.DeleteAsync(id);
+
+            return Ok();
+        }
+
         [HttpPost("{id:length(24)}")]
 
         public async Task<IActionResult> UploadFile(string id, IFormFile file)
