@@ -10,7 +10,7 @@ namespace ILikeThisFood.Infra.Data.DTO
 {
     public class CompanyDTO
     {
-        public CompanyDTO( string name, string registreNumber, string? photoUrl)
+        public CompanyDTO(string name, string registreNumber, string? photoUrl)
         {
             Name = name;
             RegistreNumber = registreNumber;

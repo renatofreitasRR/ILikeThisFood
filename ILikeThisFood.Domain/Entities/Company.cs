@@ -26,10 +26,11 @@ namespace ILikeThisFood.Domain.Entities
         public string Name { get; private set; }
         public string RegistreNumber { get; private set; }
         public string? PhotoUrl { get; private set; }
+        public IEnumerable<Food> Foods { get; private set; } = Enumerable.Empty<Food>();
 
-        public void SetFileUrl(string fileUrl)
+        public void SetPhotoUrl(string photoUrl)
         {
-            PhotoUrl = fileUrl;
+            PhotoUrl = photoUrl;
         }
     }
 }

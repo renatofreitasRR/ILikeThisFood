@@ -61,7 +61,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
         public async Task PutPhoto(string id, string photoUrl)
         {
             var company = await this.GetAsync(id);
-            company.SetFileUrl(photoUrl);
+            company.SetPhotoUrl(photoUrl);
 
             await this.UpdateAsync(company);
         }
