@@ -14,6 +14,6 @@ namespace ILikeThisFood.Domain.Repositories
         Task CreateAsync(Company company);
         Task UpdateAsync(Company company);
         Task DeleteAsync(string id);
-        Task PutFile(string id, string fileUrl);
+        Task PutPhoto(string id, string photoUrl);
     }
 }

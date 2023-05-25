@@ -23,7 +23,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
 
         public async Task CreateAsync(Company company)
         {
-            var companyDTO = new CompanyDTO(company.Name, company.RegistreNumber, company.FileUrl);
+            var companyDTO = new CompanyDTO(company.Name, company.RegistreNumber, company.PhotoUrl);
 
             await _companiesCollection.InsertOneAsync(companyDTO);
         }
@@ -39,7 +39,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
                 .Find(_ => true)
                 .ToListAsync();
 
-            var companies = companiesDTO.Select(x => new Company(x.Id, x.Name, x.RegistreNumber, x.FileUrl));
+            var companies = companiesDTO.Select(x => new Company(x.Id, x.Name, x.RegistreNumber, x.PhotoUrl));
 
             return companies;
         }
@@ -53,22 +53,22 @@ namespace ILikeThisFood.Infra.Data.Repositories
             if (companyDTO is null)
                 throw new Exception();
 
-            var company = new Company(companyDTO.Id, companyDTO.Name, companyDTO.RegistreNumber, companyDTO.FileUrl);
+            var company = new Company(companyDTO.Id, companyDTO.Name, companyDTO.RegistreNumber, companyDTO.PhotoUrl);
 
             return company;
         }
 
-        public async Task PutFile(string id, string fileUrl)
+        public async Task PutPhoto(string id, string photoUrl)
         {
             var company = await this.GetAsync(id);
-            company.SetFileUrl(fileUrl);
+            company.SetFileUrl(photoUrl);
 
             await this.UpdateAsync(company);
         }
 
         public async Task UpdateAsync(Company company)
         {
-            var companyDTO = new CompanyDTO(company.Id, company.Name, company.RegistreNumber, company.FileUrl);
+            var companyDTO = new CompanyDTO(company.Id, company.Name, company.RegistreNumber, company.PhotoUrl);
 
             await _companiesCollection.ReplaceOneAsync(x => x.Id == company.Id.ToString(), companyDTO);
         }

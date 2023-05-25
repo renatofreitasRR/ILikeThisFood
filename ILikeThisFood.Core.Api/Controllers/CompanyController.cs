@@ -98,7 +98,7 @@ namespace ILikeThisFood.Core.Api.Controllers
 
             var result = await _storageService.UploadFileAsync(s3Obj, cred);
 
-            await _companyRepository.PutFile(id, result.FileUrl);
+            await _companyRepository.PutPhoto(id, result.FileUrl);
 
             return Ok(result);
 

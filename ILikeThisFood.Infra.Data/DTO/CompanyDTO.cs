@@ -10,19 +10,19 @@ namespace ILikeThisFood.Infra.Data.DTO
 {
     public class CompanyDTO
     {
-        public CompanyDTO( string name, string registreNumber, string? fileUrl)
+        public CompanyDTO( string name, string registreNumber, string? photoUrl)
         {
             Name = name;
             RegistreNumber = registreNumber;
-            FileUrl = fileUrl;
+            PhotoUrl = photoUrl;
         }
 
-        public CompanyDTO(string id, string name, string registreNumber, string? fileUrl)
+        public CompanyDTO(string id, string name, string registreNumber, string? photoUrl)
         {
             Id = id;
             Name = name;
             RegistreNumber = registreNumber;
-            FileUrl = fileUrl;
+            PhotoUrl = photoUrl;
         }
 
         [BsonId]
@@ -30,7 +30,7 @@ namespace ILikeThisFood.Infra.Data.DTO
         public string Id { get; set; }
         public string Name { get; set; }
         public string RegistreNumber { get; set; }
-        public string? FileUrl { get; set; }
+        public string? PhotoUrl { get; set; }
 
         public void Update(string name, string registreNumber)
         {
