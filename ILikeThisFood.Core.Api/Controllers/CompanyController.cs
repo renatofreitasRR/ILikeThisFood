@@ -46,7 +46,7 @@ namespace ILikeThisFood.Core.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync(CreateCompanyInputModel companyInputModel)
         {
-            var company = new Company(companyInputModel.Name, companyInputModel.RegistreNumber, null);
+            var company = new Company(companyInputModel.Name, companyInputModel.RegistreNumber, null, companyInputModel.Address);
 
             await _companyRepository.CreateAsync(company);
 
@@ -56,7 +56,8 @@ namespace ILikeThisFood.Core.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> PutAsync(UpdateCompanyInputModel companyInputModel)
         {
-            var company = new Company(companyInputModel.Id, companyInputModel.Name, companyInputModel.RegistreNumber);
+            var company = await _companyRepository.GetAsync(companyInputModel.Id);
+            company.Update(companyInputModel.Name, companyInputModel.RegistreNumber, companyInputModel.Address);
 
             await _companyRepository.UpdateAsync(company);
 

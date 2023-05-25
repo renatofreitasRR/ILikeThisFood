@@ -23,7 +23,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
 
         public async Task CreateAsync(Company company)
         {
-            var companyDTO = new CompanyDTO(company.Name, company.RegistreNumber, company.PhotoUrl);
+            var companyDTO = new CompanyDTO(company.Name, company.RegistreNumber, company.PhotoUrl, company.Address);
 
             await _companiesCollection.InsertOneAsync(companyDTO);
         }
@@ -39,7 +39,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
                 .Find(_ => true)
                 .ToListAsync();
 
-            var companies = companiesDTO.Select(x => new Company(x.Id, x.Name, x.RegistreNumber, x.PhotoUrl));
+            var companies = companiesDTO.Select(x => new Company(x.Id, x.Name, x.RegistreNumber, x.PhotoUrl, x.Address));
 
             return companies;
         }
@@ -53,7 +53,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
             if (companyDTO is null)
                 throw new Exception();
 
-            var company = new Company(companyDTO.Id, companyDTO.Name, companyDTO.RegistreNumber, companyDTO.PhotoUrl);
+            var company = new Company(companyDTO.Id, companyDTO.Name, companyDTO.RegistreNumber, companyDTO.PhotoUrl, companyDTO.Address);
 
             return company;
         }
@@ -68,7 +68,7 @@ namespace ILikeThisFood.Infra.Data.Repositories
 
         public async Task UpdateAsync(Company company)
         {
-            var companyDTO = new CompanyDTO(company.Id, company.Name, company.RegistreNumber, company.PhotoUrl);
+            var companyDTO = new CompanyDTO(company.Id, company.Name, company.RegistreNumber, company.PhotoUrl, company.Address);
 
             await _companiesCollection.ReplaceOneAsync(x => x.Id == company.Id.ToString(), companyDTO);
         }
