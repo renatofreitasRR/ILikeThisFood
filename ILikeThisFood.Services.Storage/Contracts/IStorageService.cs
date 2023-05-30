@@ -9,6 +9,6 @@ namespace ILikeThisFood.Services.Storage.Contracts
 {
     public interface IStorageService
     {
-        Task<S3ResponseDTO> UploadFileAsync(S3Object obj, AwsCredentials awsCredentialsValues);
+        Task<S3ResponseDTO> UploadFileAsync(S3Object obj, AwsCredentials awsCredentialsValues, string? oldFilePath);
     }
 }

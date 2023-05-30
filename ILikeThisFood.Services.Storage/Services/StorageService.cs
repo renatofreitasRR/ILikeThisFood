@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
 
 namespace ILikeThisFood.Services.Storage.Services
 {
@@ -18,7 +20,7 @@ namespace ILikeThisFood.Services.Storage.Services
         {
         }
 
-        public async Task<S3ResponseDTO> UploadFileAsync(S3Object obj, AwsCredentials awsCredentialsValues)
+        public async Task<S3ResponseDTO> UploadFileAsync(S3Object obj, AwsCredentials awsCredentialsValues, string? oldFilePath)
         {
             var credentials = new BasicAWSCredentials(awsCredentialsValues.AccessKey, awsCredentialsValues.SecretKey);
 
@@ -41,11 +43,22 @@ namespace ILikeThisFood.Services.Storage.Services
                 // initialise client
                 using var client = new AmazonS3Client(credentials, config);
 
+                if (!String.IsNullOrEmpty(oldFilePath))
+                {
+                    var fileId = this.GetValueBetweenForwardSlashAndQuestionMarkInS3Url(oldFilePath);
+                    var deleteObjectRequest = new Amazon.S3.Model.DeleteObjectRequest
+                    {
+                        BucketName = obj.BucketName,
+                        Key = fileId,
+                    };
+                    var resultFromDelete = await client.DeleteObjectAsync(deleteObjectRequest);
+                }
+
                 // initialise the transfer/upload tools
                 var transferUtility = new TransferUtility(client);
 
                 // initiate the file upload
-               await transferUtility.UploadAsync(uploadRequest);
+                await transferUtility.UploadAsync(uploadRequest);
 
                 var urlRequest = new Amazon.S3.Model.GetPreSignedUrlRequest
                 {
@@ -64,6 +77,7 @@ namespace ILikeThisFood.Services.Storage.Services
             {
                 response.StatusCode = (int)s3Ex.StatusCode;
                 response.Message = s3Ex.Message;
+
             }
             catch (Exception ex)
             {
@@ -73,5 +87,19 @@ namespace ILikeThisFood.Services.Storage.Services
 
             return response;
         }
+
+        private string GetValueBetweenForwardSlashAndQuestionMarkInS3Url(string input)
+        {
+            var indexOfInterroga = input.IndexOf("?");
+
+            var offset = input.IndexOf('/');
+            offset = input.IndexOf('/', offset + 1);
+            var result = input.IndexOf('/', offset + 1);
+
+            var fileId = input.Substring(result + 1, indexOfInterroga - result - 1);
+
+            return fileId;
+        }
+
     }
 }

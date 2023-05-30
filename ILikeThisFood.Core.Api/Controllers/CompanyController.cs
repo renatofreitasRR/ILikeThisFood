@@ -16,6 +16,7 @@ namespace ILikeThisFood.Core.Api.Controllers
         private readonly ICompanyRepository _companyRepository;
         private readonly IStorageService _storageService;
         private readonly IConfiguration _configuration;
+        const string bucketName = "ilikethisfoods3";
 
         public CompanyController(
             ICompanyRepository companyRepository,
@@ -76,20 +77,14 @@ namespace ILikeThisFood.Core.Api.Controllers
 
         public async Task<IActionResult> UploadFile(string id, IFormFile file)
         {
+            var company = await _companyRepository.GetAsync(id);
+
             // Process file
             await using var memoryStream = new MemoryStream();
             await file.CopyToAsync(memoryStream);
 
-            var fileExt = Path.GetExtension(file.FileName);
-            var docName = $"{Guid.NewGuid()}{fileExt}";
-
             // call server
-            var s3Obj = new S3Object()
-            {
-                BucketName = "ilikethisfoods3",
-                InputStream = memoryStream,
-                Name = docName
-            };
+            var s3Obj = new S3Object(file.FileName, memoryStream, bucketName);
 
             var cred = new AwsCredentials()
             {
@@ -97,7 +92,7 @@ namespace ILikeThisFood.Core.Api.Controllers
                 SecretKey = _configuration["AwsConfiguration:AWSSecretKey"]
             };
 
-            var result = await _storageService.UploadFileAsync(s3Obj, cred);
+            var result = await _storageService.UploadFileAsync(s3Obj, cred, company.PhotoUrl);
 
             await _companyRepository.PutPhoto(id, result.FileUrl);
 
