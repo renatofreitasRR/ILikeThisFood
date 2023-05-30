@@ -11,6 +11,7 @@ namespace ILikeThisFood.Infra.CrossCutting
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddSingleton<ICompanyRepository, CompanyRepository>();
+            services.AddSingleton<IFoodRepository, FoodRepository>();
         }
 
         public static void RegisterServices(this IServiceCollection services)
