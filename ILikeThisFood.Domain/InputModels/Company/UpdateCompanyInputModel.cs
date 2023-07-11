@@ -1,4 +1,4 @@
-﻿using ILikeThisFood.Domain.Entities;
+﻿using ILikeThisFood.Domain.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,6 @@ namespace ILikeThisFood.Domain.InputModels.Company
         public string Id { get; set; }
         public string Name { get; set; }
         public string RegistreNumber { get; set; }
-        public Address Address { get; set; }
+        public AddressVO Address { get; set; }
     }
 }

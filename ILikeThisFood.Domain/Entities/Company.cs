@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ILikeThisFood.Domain.ValueObject;
 
 namespace ILikeThisFood.Domain.Entities
 {
     public class Company : BaseEntity
     {
-        public Company(string id, string name, string registreNumber, string? photoUrl, Address address)
+        public Company(string id, string name, string registreNumber, string? photoUrl, AddressVO address)
         {
             Id = id;
             Name = name;
@@ -16,7 +18,7 @@ namespace ILikeThisFood.Domain.Entities
             PhotoUrl = photoUrl;
             Address = address;
         }
-        public Company(string name, string registreNumber, string? photoUrl, Address address)
+        public Company(string name, string registreNumber, string? photoUrl, AddressVO address)
         {
             Name = name;
             RegistreNumber = registreNumber;
@@ -30,7 +32,7 @@ namespace ILikeThisFood.Domain.Entities
         public string Name { get; private set; }
         public string RegistreNumber { get; private set; }
         public string? PhotoUrl { get; private set; }
-        public Address Address { get; private set; }
+        public AddressVO Address { get; private set; }
 
         public void SetPhotoUrl(string photoUrl)
         {
@@ -38,22 +40,12 @@ namespace ILikeThisFood.Domain.Entities
             SetUpdatedAt();
         }
 
-        public void Update(string name, string registreNumber, Address address)
+        public void Update(string name, string registreNumber, AddressVO address)
         {
             Name = name;
             RegistreNumber = registreNumber;
             Address = address;
             SetUpdatedAt();
-        }
-
-        private void SetUpdatedAt()
-        {
-            UpdatedAt = DateTime.UtcNow;
-        }
-
-        private void SetCreatedAt()
-        {
-            UpdatedAt = DateTime.UtcNow;
         }
     }
 }

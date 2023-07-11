@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ILikeThisFood.Domain.Entities;
+using ILikeThisFood.Domain.ValueObject;
 
 namespace ILikeThisFood.Infra.Data.DTO
 {
     public class CompanyDTO
     {
-        public CompanyDTO(string name, string registreNumber, string? photoUrl, Address address)
+        public CompanyDTO(string name, string registreNumber, string? photoUrl, AddressVO address)
         {
             Name = name;
             RegistreNumber = registreNumber;
@@ -19,7 +20,7 @@ namespace ILikeThisFood.Infra.Data.DTO
             Address = address;
         }
 
-        public CompanyDTO(string id, string name, string registreNumber, string? photoUrl, Address address)
+        public CompanyDTO(string id, string name, string registreNumber, string? photoUrl, AddressVO address)
         {
             Id = id;
             Name = name;
@@ -34,7 +35,7 @@ namespace ILikeThisFood.Infra.Data.DTO
         public string Name { get; set; }
         public string RegistreNumber { get; set; }
         public string? PhotoUrl { get; set; }
-        public Address Address { get; set; }
+        public AddressVO Address { get; set; }
 
         public void Update(string name, string registreNumber)
         {
